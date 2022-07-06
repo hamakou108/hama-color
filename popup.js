@@ -1,24 +1,45 @@
-// Initialize button with user's preferred color
-let changeColor = document.getElementById("changeColor");
+let urlsElement = document.getElementById("urls");
 
-chrome.storage.sync.get("color", ({ color }) => {
-    changeColor.style.backgroundColor = color;
+chrome.storage.sync.get("text", ({ text }) => {
+    urlsElement.value = text || ''
 });
 
-// When the button is clicked, inject setPageBackgroundColor into current page
-changeColor.addEventListener("click", async () => {
+urlsElement.addEventListener("input", async (e) => {
+    const text = e.target.value
+    chrome.storage.sync.set({ text });
+
+    const [url, color] = text.split(',')
+
+    if (!url || !color) {
+        let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+        chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            function: setPageEdgeColor,
+            args: ['']
+        });
+
+        return
+    }
+
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
     chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        function: setPageBackgroundColor,
+        function: setPageEdgeColor,
+        args: [color]
     });
 });
 
-// The body of this function will be executed as a content script inside the
-// current page
-function setPageBackgroundColor() {
-    chrome.storage.sync.get("color", ({ color }) => {
-        document.body.style.backgroundColor = color;
-    });
+function setPageEdgeColor(color) {
+    const colorElement = document.createElement('div')
+    colorElement.setAttribute('id', 'color-by-url')
+    colorElement.innerHTML = `
+      <div style="background-color: ${color}; opacity: 0.2; position: fixed; top: 0; right: 0; left: 0; height: 16px; z-index: 2147483647;"></div>
+      <div style="background-color: ${color}; opacity: 0.2; position: fixed; top: 0; right: 0; bottom: 0; width: 16px; z-index: 2147483647;"></div>
+      <div style="background-color: ${color}; opacity: 0.2; position: fixed; right: 0; bottom: 0; left: 0; height: 16px; z-index: 2147483647;"></div>
+      <div style="background-color: ${color}; opacity: 0.2; position: fixed; top: 0; bottom: 0; left: 0; width: 16px; z-index: 2147483647;"></div>
+    `
+    document.body.querySelectorAll('#color-by-url').forEach(element => element.remove())
+    document.body.appendChild(colorElement);
 }
