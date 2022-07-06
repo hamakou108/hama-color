@@ -4,11 +4,20 @@ chrome.tabs.onActivated.addListener(() => {
             return
         }
 
-        const [rawUrlPattern, color] = text.split(',')
-
         let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-        if (!rawUrlPattern || !color) {
+        const textLines = text.split(/\r?\n/)
+        const matchedText = textLines.find((text) => {
+            const [rawUrlPattern, color] = text.split(',')
+            if (!rawUrlPattern || !color) {
+                return false
+            }
+
+            const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+            return tab.url.search(urlPattern) !== -1
+        })
+
+        if (typeof matchedText === 'undefined') {
             chrome.scripting.executeScript({
                 target: { tabId: tab.id },
                 function: setPageEdgeColor,
@@ -18,17 +27,7 @@ chrome.tabs.onActivated.addListener(() => {
             return
         }
 
-        // cf. https://github.com/sindresorhus/escape-string-regexp
-        const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-        if (tab.url.search(urlPattern) === -1) {
-            chrome.scripting.executeScript({
-                target: { tabId: tab.id },
-                function: setPageEdgeColor,
-                args: ['']
-            });
-
-            return
-        }
+        const color = matchedText.split(',')[1]
 
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
@@ -44,11 +43,20 @@ chrome.tabs.onUpdated.addListener(() => {
             return
         }
 
-        const [rawUrlPattern, color] = text.split(',')
-
         let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-        if (!rawUrlPattern || !color) {
+        const textLines = text.split(/\r?\n/)
+        const matchedText = textLines.find((text) => {
+            const [rawUrlPattern, color] = text.split(',')
+            if (!rawUrlPattern || !color) {
+                return false
+            }
+
+            const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+            return tab.url.search(urlPattern) !== -1
+        })
+
+        if (typeof matchedText === 'undefined') {
             chrome.scripting.executeScript({
                 target: { tabId: tab.id },
                 function: setPageEdgeColor,
@@ -58,17 +66,7 @@ chrome.tabs.onUpdated.addListener(() => {
             return
         }
 
-        // cf. https://github.com/sindresorhus/escape-string-regexp
-        const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-        if (tab.url.search(urlPattern) === -1) {
-            chrome.scripting.executeScript({
-                target: { tabId: tab.id },
-                function: setPageEdgeColor,
-                args: ['']
-            });
-
-            return
-        }
+        const color = matchedText.split(',')[1]
 
         chrome.scripting.executeScript({
             target: { tabId: tab.id },
