@@ -44,10 +44,10 @@ function setPageEdgeColor(color) {
     const colorElement = document.createElement('div')
     colorElement.setAttribute('id', 'hama-color')
     colorElement.innerHTML = `
-      <div style="background-color: ${color}; opacity: 0.2; position: fixed; top: 0; right: 0; left: 0; height: 16px; z-index: 2147483647;"></div>
-      <div style="background-color: ${color}; opacity: 0.2; position: fixed; top: 0; right: 0; bottom: 0; width: 16px; z-index: 2147483647;"></div>
-      <div style="background-color: ${color}; opacity: 0.2; position: fixed; right: 0; bottom: 0; left: 0; height: 16px; z-index: 2147483647;"></div>
-      <div style="background-color: ${color}; opacity: 0.2; position: fixed; top: 0; bottom: 0; left: 0; width: 16px; z-index: 2147483647;"></div>
+      <div style="background-color: ${color}; opacity: 0.2; position: fixed; pointer-events: none; top: 0; right: 0; left: 0; height: 16px; z-index: 2147483647;"></div>
+      <div style="background-color: ${color}; opacity: 0.2; position: fixed; pointer-events: none; top: 0; right: 0; bottom: 0; width: 16px; z-index: 2147483647;"></div>
+      <div style="background-color: ${color}; opacity: 0.2; position: fixed; pointer-events: none; right: 0; bottom: 0; left: 0; height: 16px; z-index: 2147483647;"></div>
+      <div style="background-color: ${color}; opacity: 0.2; position: fixed; pointer-events: none; top: 0; bottom: 0; left: 0; width: 16px; z-index: 2147483647;"></div>
     `
     document.body.querySelectorAll('#hama-color').forEach(element => element.remove())
     document.body.appendChild(colorElement);
