@@ -18,5 +18,8 @@
   "homepage": "https://github.com/hamakou108/color-by-url#readme",
   "engines": {
     "node": "^18.7.0"
+  },
+  "dependencies": {
+    "yarn": "^1.22.19"
   }
 }
