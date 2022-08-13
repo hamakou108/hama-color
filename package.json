@@ -1,0 +1,22 @@
+{
+  "name": "hama-color",
+  "version": "0.1.1",
+  "description": "Change screen edge color by URL",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamakou108/color-by-url.git"
+  },
+  "author": "hamakou108",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hamakou108/color-by-url/issues"
+  },
+  "homepage": "https://github.com/hamakou108/color-by-url#readme",
+  "engines": {
+    "node": "^18.7.0"
+  }
+}
