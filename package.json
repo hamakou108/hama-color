@@ -41,6 +41,7 @@
     "eslint-config-prettier": "^8.5.0",
     "husky": ">=6",
     "lint-staged": ">=10",
+    "prettier": "^2.7.1",
     "stylelint": "^14.11.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-scss": "^4.3.0",

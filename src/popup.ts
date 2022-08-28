@@ -2,58 +2,72 @@ import './style.css'
 
 export {}
 
-let urlsElement = document.getElementById("urls") as HTMLInputElement;
+const urlsElement = document.getElementById('urls') as HTMLInputElement
 
-chrome.storage.sync.get("text", ({ text }) => {
-    urlsElement.value = text || ''
-});
+chrome.storage.sync.get('text', ({ text }) => {
+  urlsElement.value = text || ''
+})
 
-urlsElement.addEventListener("input", async (e) => {
-    const text = (e.target as HTMLInputElement).value
-    chrome.storage.sync.set({ text });
+urlsElement.addEventListener('input', async (e) => {
+  const text = (e.target as HTMLInputElement).value
+  chrome.storage.sync.set({ text })
 
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
 
-    const textLines = text.split(/\r?\n/)
-    const matchedText = textLines.find((text) => {
-        const [rawUrlPattern, color] = text.split(',')
-        if (!rawUrlPattern || !color) {
-            return false
-        }
-
-        const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-        return tab.url!.search(urlPattern) !== -1
-    })
-
-    if (typeof matchedText === 'undefined') {
-        chrome.scripting.executeScript({
-            target: { tabId: tab.id! },
-            func: setPageEdgeColor,
-            args: ['']
-        });
-
-        return
+  const textLines = text.split(/\r?\n/)
+  const matchedText = textLines.find((text) => {
+    const [rawUrlPattern, color] = text.split(',')
+    if (!rawUrlPattern || !color) {
+      return false
     }
 
-    const color = matchedText.split(',')[1]
+    const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+
+    if (typeof tab.url === 'undefined') {
+      return false
+    }
+
+    return tab.url.search(urlPattern) !== -1
+  })
+
+  if (typeof matchedText === 'undefined') {
+    if (typeof tab.id === 'undefined') {
+      return
+    }
 
     chrome.scripting.executeScript({
-        target: { tabId: tab.id! },
-        func: setPageEdgeColor,
-        args: [color]
-    });
-});
+      target: { tabId: tab.id },
+      func: setPageEdgeColor,
+      args: [''],
+    })
 
-// @ts-ignore
+    return
+  }
+
+  const color = matchedText.split(',')[1]
+
+  if (typeof tab.id === 'undefined') {
+    return
+  }
+
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: setPageEdgeColor,
+    args: [color],
+  })
+})
+
 function setPageEdgeColor(color: string) {
-    const colorElement = document.createElement('div')
-    colorElement.setAttribute('id', 'hama-color')
-    colorElement.innerHTML = `
+  const colorElement = document.createElement('div')
+  colorElement.setAttribute('id', 'hama-color')
+  colorElement.innerHTML = `
       <div style="background-color: ${color}; opacity: 0.2; position: fixed; pointer-events: none; top: 0; right: 0; left: 0; height: 16px; z-index: 2147483647;"></div>
       <div style="background-color: ${color}; opacity: 0.2; position: fixed; pointer-events: none; top: 0; right: 0; bottom: 0; width: 16px; z-index: 2147483647;"></div>
       <div style="background-color: ${color}; opacity: 0.2; position: fixed; pointer-events: none; right: 0; bottom: 0; left: 0; height: 16px; z-index: 2147483647;"></div>
       <div style="background-color: ${color}; opacity: 0.2; position: fixed; pointer-events: none; top: 0; bottom: 0; left: 0; width: 16px; z-index: 2147483647;"></div>
     `
-    document.body.querySelectorAll('#hama-color').forEach(element => element.remove())
-    document.body.appendChild(colorElement);
+  document.body
+    .querySelectorAll('#hama-color')
+    .forEach((element) => element.remove())
+  document.body.appendChild(colorElement)
 }
