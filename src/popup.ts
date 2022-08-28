@@ -1,11 +1,15 @@
-let urlsElement = document.getElementById("urls");
+import './style.css'
+
+export {}
+
+let urlsElement = document.getElementById("urls") as HTMLInputElement;
 
 chrome.storage.sync.get("text", ({ text }) => {
     urlsElement.value = text || ''
 });
 
 urlsElement.addEventListener("input", async (e) => {
-    const text = e.target.value
+    const text = (e.target as HTMLInputElement).value
     chrome.storage.sync.set({ text });
 
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -18,13 +22,13 @@ urlsElement.addEventListener("input", async (e) => {
         }
 
         const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-        return tab.url.search(urlPattern) !== -1
+        return tab.url!.search(urlPattern) !== -1
     })
 
     if (typeof matchedText === 'undefined') {
         chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            function: setPageEdgeColor,
+            target: { tabId: tab.id! },
+            func: setPageEdgeColor,
             args: ['']
         });
 
@@ -34,13 +38,14 @@ urlsElement.addEventListener("input", async (e) => {
     const color = matchedText.split(',')[1]
 
     chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        function: setPageEdgeColor,
+        target: { tabId: tab.id! },
+        func: setPageEdgeColor,
         args: [color]
     });
 });
 
-function setPageEdgeColor(color) {
+// @ts-ignore
+function setPageEdgeColor(color: string) {
     const colorElement = document.createElement('div')
     colorElement.setAttribute('id', 'hama-color')
     colorElement.innerHTML = `

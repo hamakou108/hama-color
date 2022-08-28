@@ -1,0 +1,34 @@
+{
+  "name": "hama-color",
+  "version": "0.1.1",
+  "description": "Change screen edge color by URL",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamakou108/color-by-url.git"
+  },
+  "author": "hamakou108",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hamakou108/color-by-url/issues"
+  },
+  "homepage": "https://github.com/hamakou108/color-by-url#readme",
+  "engines": {
+    "node": "^18.7.0"
+  },
+  "dependencies": {
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^1.0.14",
+    "@types/chrome": "^0.0.195",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.9"
+  }
+}

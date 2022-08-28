@@ -1,3 +1,5 @@
+export {}
+
 chrome.tabs.onActivated.addListener(() => {
     chrome.storage.sync.get("text", async ({ text }) => {
         if (typeof text === 'undefined') {
@@ -6,21 +8,25 @@ chrome.tabs.onActivated.addListener(() => {
 
         let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
+        if (typeof tab === 'undefined') {
+            return
+        }
+
         const textLines = text.split(/\r?\n/)
-        const matchedText = textLines.find((text) => {
+        const matchedText = textLines.find((text: string) => {
             const [rawUrlPattern, color] = text.split(',')
             if (!rawUrlPattern || !color) {
                 return false
             }
 
             const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-            return tab.url.search(urlPattern) !== -1
+            return tab.url!.search(urlPattern) !== -1
         })
 
         if (typeof matchedText === 'undefined') {
             chrome.scripting.executeScript({
-                target: { tabId: tab.id },
-                function: setPageEdgeColor,
+                target: { tabId: tab.id! },
+                func: setPageEdgeColor,
                 args: ['']
             });
 
@@ -30,8 +36,8 @@ chrome.tabs.onActivated.addListener(() => {
         const color = matchedText.split(',')[1]
 
         chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            function: setPageEdgeColor,
+            target: { tabId: tab.id! },
+            func: setPageEdgeColor,
             args: [color]
         });
     })
@@ -46,20 +52,20 @@ chrome.tabs.onUpdated.addListener(() => {
         let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
         const textLines = text.split(/\r?\n/)
-        const matchedText = textLines.find((text) => {
+        const matchedText = textLines.find((text: string) => {
             const [rawUrlPattern, color] = text.split(',')
             if (!rawUrlPattern || !color) {
                 return false
             }
 
             const urlPattern = rawUrlPattern.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-            return tab.url.search(urlPattern) !== -1
+            return tab.url!.search(urlPattern) !== -1
         })
 
         if (typeof matchedText === 'undefined') {
             chrome.scripting.executeScript({
-                target: { tabId: tab.id },
-                function: setPageEdgeColor,
+                target: { tabId: tab.id! },
+                func: setPageEdgeColor,
                 args: ['']
             });
 
@@ -69,14 +75,15 @@ chrome.tabs.onUpdated.addListener(() => {
         const color = matchedText.split(',')[1]
 
         chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            function: setPageEdgeColor,
+            target: { tabId: tab.id! },
+            func: setPageEdgeColor,
             args: [color]
         });
     })
 });
 
-function setPageEdgeColor(color) {
+// @ts-ignore
+function setPageEdgeColor(color: string) {
     const colorElement = document.createElement('div')
     colorElement.setAttribute('id', 'hama-color')
     colorElement.innerHTML = `
