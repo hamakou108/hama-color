@@ -13,8 +13,7 @@
     "style-lint": "stylelint 'src/*.{css,scss,sass}'",
     "style-lint:fix": "stylelint --fix 'src/*.{css,scss,sass}'",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "prepare": "husky install"
+    "format:check": "prettier --check ."
   },
   "repository": {
     "type": "git",
@@ -40,9 +39,7 @@
     "@typescript-eslint/parser": "^5.35.1",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
-    "husky": ">=6",
     "jest": "^28.1.3",
-    "lint-staged": ">=10",
     "prettier": "^2.7.1",
     "stylelint": "^15.8.0",
     "stylelint-config-standard": "^33.0.0",
@@ -50,10 +47,5 @@
     "ts-jest": "^28.0.8",
     "typescript": "^4.7.4",
     "vite": "^3.0.9"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
-    "*.{css,sass,scss}": "stylelint --fix",
-    "*.{js,jsx,ts,tsx,html,css,sass,scss,md}": "prettier --write --cache"
   }
 }
