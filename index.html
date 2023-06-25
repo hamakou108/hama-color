@@ -2,11 +2,17 @@
 <html>
   <body>
     <h1>HamaColor</h1>
-    <div class="popup">
-      <div class="description">
-        Input URL and color (e.g. https://example.com, red)
+    <div class="contents">
+      <div class="toggle-frame-area">
+        <label for="toggle-frame">Show color frame</label>
+        <input type="checkbox" id="toggle-frame" />
       </div>
-      <textarea id="urls"></textarea>
+      <div class="urls-area">
+        <div class="description">
+          Input URL and color (e.g. https://example.com, red)
+        </div>
+        <textarea id="urls"></textarea>
+      </div>
     </div>
     <script type="module" src="/src/popup.ts"></script>
   </body>

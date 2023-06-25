@@ -8,12 +8,19 @@ chrome.tabs.onUpdated.addListener(() => {
   initialize()
 })
 
-const initialize = (): void => {
-  chrome.storage.sync.get('ruleString', async ({ ruleString }) => {
-    if (typeof ruleString === 'undefined') {
-      return
-    }
+const initialize = async (): Promise<void> => {
+  const { canViewFrame, ruleString } = await chrome.storage.sync.get([
+    'canViewFrame',
+    'ruleString',
+  ])
 
-    await useTab().update(ruleString)
-  })
+  if (typeof canViewFrame === 'undefined') {
+    await chrome.storage.sync.set({ canViewFrame: true })
+  }
+
+  if (typeof ruleString === 'undefined') {
+    return
+  }
+
+  await useTab().update(canViewFrame, ruleString)
 }
