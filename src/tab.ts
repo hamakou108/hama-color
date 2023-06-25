@@ -2,7 +2,10 @@ import { useRule } from './rule'
 import { useDom } from './dom'
 
 export const useTab = () => {
-  const update = async (ruleString: string): Promise<void> => {
+  const update = async (
+    canViewFrame: boolean,
+    ruleString: string
+  ): Promise<void> => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
 
     if (typeof tab.url === 'undefined' || typeof tab.id === 'undefined') {
@@ -11,7 +14,7 @@ export const useTab = () => {
 
     const effect = useRule(ruleString).getEffect(new URL(tab.url))
 
-    if (typeof effect === 'undefined') {
+    if (typeof effect === 'undefined' || !canViewFrame) {
       await chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: useDom().resetPageEdgeColor,
