@@ -1,4 +1,4 @@
-import './style.css'
+import './style.scss'
 import { useTab } from './tab'
 
 const urlsElement = document.getElementById('urls') as HTMLInputElement
