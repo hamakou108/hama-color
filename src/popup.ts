@@ -2,7 +2,7 @@ import './style.scss'
 import { useTab } from './tab'
 
 const toggleFrameElement = document.getElementById(
-  'toggle-frame'
+  'toggle-frame',
 ) as HTMLInputElement
 const urlsElement = document.getElementById('urls') as HTMLInputElement
 

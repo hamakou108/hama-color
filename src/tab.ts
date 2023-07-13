@@ -4,7 +4,7 @@ import { useDom } from './dom'
 export const useTab = () => {
   const update = async (
     canViewFrame: boolean,
-    ruleString: string
+    ruleString: string,
   ): Promise<void> => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
 
