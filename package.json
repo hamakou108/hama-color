@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
-    "@types/chrome": "^0.0.241",
+    "@types/chrome": "^0.0.242",
     "@types/jest": "^29.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
