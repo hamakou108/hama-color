@@ -1257,13 +1257,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:^0.0.258":
-  version: 0.0.258
-  resolution: "@types/chrome@npm:0.0.258"
+"@types/chrome@npm:^0.0.260":
+  version: 0.0.260
+  resolution: "@types/chrome@npm:0.0.260"
   dependencies:
     "@types/filesystem": "npm:*"
     "@types/har-format": "npm:*"
-  checksum: 10c0/166d9b5feed9ff991aa186e04b53c9bdf7c885975953ebf4540f2db23dc33507a38d071e8d5c017c7c6eabcd2a52b48699c4f2c3c56fd42687330f0d6e7daa2a
+  checksum: 10c0/58d844c2f88794d0181325d8f79b47462c1cbfca44d59b18bc49243a85a97757c6ec4290c207912a9b751831f955c5f7598379be0eb5b8f509025da691d113a2
   languageName: node
   linkType: hard
 
@@ -3057,7 +3057,7 @@ __metadata:
   resolution: "hama-color@workspace:."
   dependencies:
     "@crxjs/vite-plugin": "npm:^1.0.14"
-    "@types/chrome": "npm:^0.0.258"
+    "@types/chrome": "npm:^0.0.260"
     "@types/jest": "npm:^29.0.0"
     "@typescript-eslint/eslint-plugin": "npm:^6.0.0"
     "@typescript-eslint/parser": "npm:^6.0.0"
