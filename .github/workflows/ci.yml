@@ -22,7 +22,7 @@ jobs:
           corepack enable
           yarn set version berry
       - name: Install dependencies
-        run: yarn install --check-cache
+        run: yarn install --immutable
       - name: Check build
         run: yarn run build
       - name: Check lint
