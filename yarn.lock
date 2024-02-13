@@ -2547,7 +2547,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.23.0":
+"eslint@npm:^8.56.0":
   version: 8.56.0
   resolution: "eslint@npm:8.56.0"
   dependencies:
@@ -3061,7 +3061,7 @@ __metadata:
     "@types/jest": "npm:^29.0.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.0.0"
     "@typescript-eslint/parser": "npm:^7.0.0"
-    eslint: "npm:^8.23.0"
+    eslint: "npm:^8.56.0"
     eslint-config-prettier: "npm:^9.0.0"
     jest: "npm:^29.0.0"
     postcss: "npm:^8.4.25"
