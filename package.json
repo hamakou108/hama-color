@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/hamakou108/color-by-url#readme",
   "engines": {
-    "node": "^20.9.0"
+    "node": "^22.0.0"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.14",
