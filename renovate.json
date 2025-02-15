@@ -1,10 +1,18 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": [
+    "config:recommended",
+    "schedule:monthly",
+    ":maintainLockFilesMonthly"
+  ],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "All minor and patch updates"
+      "groupName": "Update all minor and patch updates"
     }
-  ]
+  ],
+  "lockFileMaintenance": {
+    "commitMessageAction": "",
+    "groupName": "Update all minor and patch updates"
+  }
 }
