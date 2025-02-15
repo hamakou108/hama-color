@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hamakou108/color-by-url.git"
+    "url": "git+https://github.com/hamakou108/hama-color.git"
   },
   "author": "hamakou108",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hamakou108/color-by-url/issues"
+    "url": "https://github.com/hamakou108/hama-color/issues"
   },
-  "homepage": "https://github.com/hamakou108/color-by-url#readme",
+  "homepage": "https://github.com/hamakou108/hama-color#readme",
   "engines": {
     "node": "^22.0.0"
   },
