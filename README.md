@@ -1,7 +1,7 @@
-# hama-color
+# HamaColor
 
 ## Description
-hama-color is a browser extension that changes the color of the screen edges based on user-defined URL patterns. This helps users visually distinguish browser tabs or environments (e.g., development, staging, production) quickly.
+HamaColor is a browser extension that changes the color of the screen edges based on user-defined URL patterns. This helps users visually distinguish browser tabs or environments (e.g., development, staging, production) quickly.
 
 ## Features
 - Customize screen edge color based on URL patterns.
@@ -13,7 +13,7 @@ hama-color is a browser extension that changes the color of the screen edges bas
 
 ### From Chrome Web Store (Recommended)
 *(TODO: Add link here if/when published)*
-1. Go to the hama-color page on the Chrome Web Store.
+1. Go to the HamaColor page on the Chrome Web Store.
 2. Click "Add to Chrome".
 
 ### Manual Installation (for developers or testing)
@@ -26,13 +26,13 @@ hama-color is a browser extension that changes the color of the screen edges bas
 ## Usage
 Rules are defined as a list of comma-separated pairs of URL patterns and colors. Each rule should be on a new line.
 
-1. Click on the hama-color extension icon in your browser toolbar.
+1. Click on the HamaColor extension icon in your browser toolbar.
 2. The popup will show a textarea for your rules.
 3. Enter your rules in the following format:
    ```
    <URL_pattern>,<color>
    ```
-   - `<URL_pattern>`: A string that will be matched against the current tab's URL. This can be a full URL or a partial match (e.g., a domain name or a specific path). Regular expressions are supported for the pattern.
+   - `<URL_pattern>`: A string that will be matched against the current tab's URL. This can be a full URL or a partial match (e.g., a domain name or a specific path).
    - `<color>`: Any valid CSS color name (e.g., `red`, `blue`, `green`) or hex code (e.g., `#FF0000`, `#00FF00`).
 
    **Example:**
