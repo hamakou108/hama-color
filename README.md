@@ -15,9 +15,7 @@ HamaColor is a browser extension that changes the color of the screen edges base
 
 ### From Chrome Web Store (Recommended)
 
-_(TODO: Add link here if/when published)_
-
-1. Go to the HamaColor page on the Chrome Web Store.
+1. Go to the HamaColor page on the Chrome Web Store: https://chromewebstore.google.com/detail/hamacolor/ciofpkbhollmjpaobphhjdngaohglpgp?pli=1
 2. Click "Add to Chrome".
 
 ### Manual Installation (for developers or testing)
