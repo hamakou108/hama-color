@@ -1,6 +1,6 @@
 dist/
 node_modules/
 public/
-yarn.lock
+pnpm-lock.yaml
 .eslintcache
 CHANGELOG.md

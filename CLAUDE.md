@@ -6,19 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Development
 
-- `yarn dev` - Start development server
-- `yarn build` - Build extension (TypeScript compile + Vite build)
-- `yarn preview` - Preview built extension
+- `pnpm dev` - Start development server
+- `pnpm build` - Build extension (TypeScript compile + Vite build)
+- `pnpm preview` - Preview built extension
 
 ### Testing and Quality
 
-- `yarn test` - Run Jest tests
-- `yarn lint` - ESLint with max 0 warnings
-- `yarn lint:fix` - Auto-fix ESLint issues
-- `yarn style-lint` - StyleLint for SCSS files
-- `yarn style-lint:fix` - Auto-fix StyleLint issues
-- `yarn format` - Format with Prettier
-- `yarn format:check` - Check Prettier formatting
+- `pnpm test` - Run Jest tests
+- `pnpm lint` - ESLint with max 0 warnings
+- `pnpm lint:fix` - Auto-fix ESLint issues
+- `pnpm style-lint` - StyleLint for SCSS files
+- `pnpm style-lint:fix` - Auto-fix StyleLint issues
+- `pnpm format` - Format with Prettier
+- `pnpm format:check` - Check Prettier formatting
 
 ## Architecture
 
