@@ -2,3 +2,6 @@ onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
   - unrs-resolver
+
+# Note: Align with Renovate settings (`config:best-practices` > `security:minimumReleaseAgeNpm`)
+minimumReleaseAge: 4320
