@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest'
 import { useRule } from '../src/rule'
 
 describe('~/rule', () => {
