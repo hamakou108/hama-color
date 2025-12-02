@@ -2,10 +2,5 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:best-practices", "group:allNonMajor", "schedule:monthly"],
 
-  "timezone": "Asia/Tokyo",
-
-  "vulnerabilityAlerts": {
-    "enabled": true
-  },
-  "osvVulnerabilityAlerts": true
+  "timezone": "Asia/Tokyo"
 }
