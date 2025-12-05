@@ -1,36 +1,37 @@
 import './style.scss'
 import { useTab } from './tab'
+import * as storage from './storage'
 
 const toggleFrameElement = document.getElementById(
   'toggle-frame',
 ) as HTMLInputElement
 const urlsElement = document.getElementById('urls') as HTMLInputElement
 
-chrome.storage.sync.get('canViewFrame', ({ canViewFrame }) => {
+;(async () => {
+  const { canViewFrame, ruleString } = await storage.get([
+    'canViewFrame',
+    'ruleString',
+  ])
   toggleFrameElement.checked = canViewFrame
-})
-chrome.storage.sync.get('ruleString', ({ ruleString }) => {
-  urlsElement.value = ruleString || ''
-})
+  urlsElement.value = ruleString
+})()
+
+const updateTab = async () => {
+  const { canViewFrame, ruleString } = await storage.get([
+    'canViewFrame',
+    'ruleString',
+  ])
+  await useTab().update(canViewFrame, ruleString)
+}
 
 toggleFrameElement.addEventListener('input', async (e) => {
   const canViewFrame = (e.target as HTMLInputElement).checked
-  await chrome.storage.sync.set({ canViewFrame })
-
-  const { ruleString } = await chrome.storage.sync.get('ruleString')
-
-  await useTab().update(canViewFrame, ruleString)
+  await storage.set({ canViewFrame })
+  await updateTab()
 })
 
 urlsElement.addEventListener('input', async (e) => {
   const ruleString = (e.target as HTMLInputElement).value
-  await chrome.storage.sync.set({ ruleString })
-
-  if (typeof ruleString === 'undefined') {
-    return
-  }
-
-  const { canViewFrame } = await chrome.storage.sync.get('canViewFrame')
-
-  await useTab().update(canViewFrame, ruleString)
+  await storage.set({ ruleString })
+  await updateTab()
 })
