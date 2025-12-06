@@ -5,7 +5,7 @@ const manifest = defineManifest({
   manifest_version: 3,
   name: 'HamaColor',
   description: 'Change screen edge color by URL',
-  version: '0.2.1',
+  version: '0.2.2',
   permissions: ['storage', 'activeTab', 'scripting'],
   host_permissions: ['*://*/*'],
   background: {
