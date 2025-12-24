@@ -4,6 +4,10 @@ on:
       - main
 
 name: release-please
+
+permissions:
+  contents: read
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
