@@ -13,7 +13,8 @@
     "style-lint": "stylelint 'src/*.{css,scss,sass}'",
     "style-lint:fix": "stylelint --fix 'src/*.{css,scss,sass}'",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "secretlint": "secretlint '**/*'"
   },
   "repository": {
     "type": "git",
@@ -31,11 +32,13 @@
   "devDependencies": {
     "@crxjs/vite-plugin": "2.2.1",
     "@eslint/js": "9.39.1",
+    "@secretlint/secretlint-rule-preset-recommend": "11.2.5",
     "@types/chrome": "0.1.32",
     "eslint": "9.39.1",
     "postcss": "8.5.6",
     "prettier": "3.7.3",
     "sass": "1.94.2",
+    "secretlint": "11.2.5",
     "stylelint": "16.26.1",
     "stylelint-config-standard-scss": "16.0.0",
     "typescript": "5.9.3",
