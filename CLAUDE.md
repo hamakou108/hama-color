@@ -2,6 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Language
+
+Use English for all project artifacts including:
+
+- Code comments
+- Git commit messages
+- Pull request titles and descriptions
+- Documentation
+
 ## Commands
 
 ### Development
