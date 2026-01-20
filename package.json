@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/hamakou108/hama-color#readme",
   "engines": {
-    "node": "^22.0.0"
+    "node": "^24.0.0"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "2.3.0",
