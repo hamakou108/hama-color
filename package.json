@@ -32,24 +32,24 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "2.3.0",
-    "@eslint/js": "9.39.2",
+    "@eslint/js": "9.39.3",
     "@secretlint/secretlint-rule-preset-recommend": "11.3.1",
-    "@types/chrome": "0.1.36",
-    "eslint": "9.39.2",
+    "@types/chrome": "0.1.37",
+    "eslint": "9.39.3",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
     "postcss": "8.5.6",
     "prettier": "3.8.1",
     "sass": "1.97.3",
     "secretlint": "11.3.1",
-    "stylelint": "17.0.0",
+    "stylelint": "17.4.0",
     "stylelint-config-standard-scss": "17.0.0",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.54.0",
+    "typescript-eslint": "8.56.1",
     "vite": "7.3.1",
     "vitest": "4.0.18"
   },
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.30.2",
   "lint-staged": {
     "*": [
       "secretlint"
