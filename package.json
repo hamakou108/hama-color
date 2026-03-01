@@ -32,10 +32,10 @@
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "2.3.0",
-    "@eslint/js": "9.39.2",
+    "@eslint/js": "10.0.1",
     "@secretlint/secretlint-rule-preset-recommend": "11.3.1",
     "@types/chrome": "0.1.36",
-    "eslint": "9.39.2",
+    "eslint": "10.0.2",
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
     "postcss": "8.5.6",
