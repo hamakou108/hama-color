@@ -11,6 +11,58 @@ Use English for all project artifacts including:
 - Pull request titles and descriptions
 - Documentation
 
+## Commit Convention
+
+This project uses [Release Please](https://github.com/googleapis/release-please) for automated releases. Commit messages must follow [Conventional Commits](https://www.conventionalcommits.org/) so that Release Please can correctly generate changelogs and determine version bumps.
+
+### Format
+
+```
+<type>[optional scope][!]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Types and version impact
+
+| Type       | Release section          | Version bump                |
+| ---------- | ------------------------ | --------------------------- |
+| `feat`     | Features                 | minor (patch while < 1.0.0) |
+| `fix`      | Bug Fixes                | patch                       |
+| `docs`     | Documentation            | — (no release)              |
+| `chore`    | Miscellaneous Chores     | — (no release)              |
+| `build`    | —                        | — (no release)              |
+| `ci`       | —                        | — (no release)              |
+| `refactor` | —                        | — (no release)              |
+| `test`     | —                        | — (no release)              |
+| `style`    | —                        | — (no release)              |
+| `perf`     | Performance Improvements | — (no release)              |
+
+### Reverting commits
+
+Do not use `revert` as a standalone type. Instead, use the original commit's type so that Release Please applies the correct version bump. Add "revert" as a description prefix.
+
+```
+# Good — preserves the original type, no unintended version bump
+chore: revert "change Renovate schedule to first day of month"
+
+# Good — Release Please correctly treats this as a patch bump
+fix: revert "allow empty URL patterns"
+
+# Bad — Release Please treats `revert` as a patch bump regardless of the original type
+revert: change Renovate schedule to first day of month
+```
+
+### Breaking changes
+
+Append `!` after the type/scope or add a `BREAKING CHANGE:` footer to trigger a major version bump (minor while < 1.0.0). Example:
+
+```
+feat!: remove support for Manifest V2
+```
+
 ## Commands
 
 ### Development
