@@ -27,18 +27,18 @@ This project uses [Release Please](https://github.com/googleapis/release-please)
 
 ### Types and version impact
 
-| Type | Release section | Version bump |
-|------|----------------|--------------|
-| `feat` | Features | minor (patch while < 1.0.0) |
-| `fix` | Bug Fixes | patch |
-| `docs` | Documentation | — (no release) |
-| `chore` | Miscellaneous Chores | — (no release) |
-| `build` | — | — (no release) |
-| `ci` | — | — (no release) |
-| `refactor` | — | — (no release) |
-| `test` | — | — (no release) |
-| `style` | — | — (no release) |
-| `perf` | Performance Improvements | — (no release) |
+| Type       | Release section          | Version bump                |
+| ---------- | ------------------------ | --------------------------- |
+| `feat`     | Features                 | minor (patch while < 1.0.0) |
+| `fix`      | Bug Fixes                | patch                       |
+| `docs`     | Documentation            | — (no release)              |
+| `chore`    | Miscellaneous Chores     | — (no release)              |
+| `build`    | —                        | — (no release)              |
+| `ci`       | —                        | — (no release)              |
+| `refactor` | —                        | — (no release)              |
+| `test`     | —                        | — (no release)              |
+| `style`    | —                        | — (no release)              |
+| `perf`     | Performance Improvements | — (no release)              |
 
 ### Reverting commits
 
