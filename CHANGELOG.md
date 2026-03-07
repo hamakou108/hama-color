@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/hamakou108/hama-color/compare/v0.2.2...v0.2.3) (2026-03-07)
+
+
+### Reverts
+
+* change Renovate schedule to first day of month ([#169](https://github.com/hamakou108/hama-color/issues/169)) ([#181](https://github.com/hamakou108/hama-color/issues/181)) ([59e3407](https://github.com/hamakou108/hama-color/commit/59e3407450301b482131660e72c93ad293df56db))
+
 ## [0.2.2](https://github.com/hamakou108/hama-color/compare/v0.2.1...v0.2.2) (2025-12-06)
 
 
