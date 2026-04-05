@@ -29,8 +29,5 @@ const manifest = defineManifest({
 })
 
 export default defineConfig({
-  esbuild: {
-    include: /\.(tsx?|jsx?)$/,
-  },
   plugins: [crx({ manifest })],
 })
