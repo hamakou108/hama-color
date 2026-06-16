@@ -101,12 +101,12 @@ HamaColor is a Chrome extension that adds colored borders to web pages based on 
 **Popup Interface** (`src/entrypoints/popup/`)
 
 - Toggle switch for enabling/disabling borders
-- Text input for rule configuration
+- Textarea for rule configuration
 - Syncs with browser storage API
 
 **Tab Management** (`src/utils/tab.ts`)
 
-- Orchestrates storage retrieval, rule matching, and messaging to content script
+- Orchestrates rule matching and messaging to content script
 - Shared by both background and popup entrypoints
 
 **Rule System** (`src/utils/rule.ts`)
@@ -135,7 +135,7 @@ HamaColor is a Chrome extension that adds colored borders to web pages based on 
 
 ### Design Decisions
 
-**Extension API wrappers and layering**: Currently, `utils/tab.ts` combines extension API calls (tab query, message sending) with orchestration logic (storage retrieval, rule matching). This is intentional — at the current project scale, separating a thin API adapter layer from an orchestration layer would be over-engineering. If the project grows to need features like bulk tab updates or additional messaging patterns, consider splitting into:
+**Extension API wrappers and layering**: Currently, `utils/tab.ts` combines extension API calls (tab query, message sending) with orchestration logic (rule matching). This is intentional — at the current project scale, separating a thin API adapter layer from an orchestration layer would be over-engineering. If the project grows to need features like bulk tab updates or additional messaging patterns, consider splitting into:
 
 - Thin API adapters (`utils/tab.ts`, `utils/storage.ts`) that only wrap `browser.*` calls
 - An orchestration layer (e.g. `services/`) that composes adapters with domain logic

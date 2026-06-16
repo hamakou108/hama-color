@@ -1,4 +1,5 @@
 import { getEffect } from '@/utils/rule'
+import type { Message } from '@/utils/message'
 
 export const updateTab = async (
   canViewFrame: boolean,
@@ -15,9 +16,12 @@ export const updateTab = async (
 
   const effect = getEffect(ruleString, new URL(tab.url))
 
+  let message: Message
   if (typeof effect !== 'undefined' && canViewFrame) {
-    await browser.tabs.sendMessage(tab.id, { action: 'set' as const, effect })
+    message = { action: 'set', effect }
   } else {
-    await browser.tabs.sendMessage(tab.id, { action: 'reset' as const })
+    message = { action: 'reset' }
   }
+
+  await browser.tabs.sendMessage(tab.id, message)
 }

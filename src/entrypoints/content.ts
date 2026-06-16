@@ -1,17 +1,23 @@
 import type { Effect } from '@/utils/rule'
+import type { Message } from '@/utils/message'
 
 export default defineContentScript({
   matches: ['*://*/*'],
   main() {
-    browser.runtime.onMessage.addListener(
-      (message: { action: 'set'; effect: Effect } | { action: 'reset' }) => {
-        if (message.action === 'set') {
+    browser.runtime.onMessage.addListener((message: Message) => {
+      switch (message.action) {
+        case 'set':
           setPageEdgeColor(message.effect)
-        } else if (message.action === 'reset') {
+          break
+        case 'reset':
           resetPageEdgeColor()
+          break
+        default: {
+          const _exhaustive: never = message
+          console.warn('Content script received unknown action:', _exhaustive)
         }
-      },
-    )
+      }
+    })
   },
 })
 
