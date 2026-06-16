@@ -4,14 +4,15 @@
   "description": "Change screen edge color by URL",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "postinstall": "wxt prepare",
     "test": "vitest run",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint --fix .",
-    "style-lint": "stylelint 'src/*.{css,scss,sass}'",
-    "style-lint:fix": "stylelint --fix 'src/*.{css,scss,sass}'",
+    "style-lint": "stylelint 'src/**/*.{css,scss,sass}'",
+    "style-lint:fix": "stylelint --fix 'src/**/*.{css,scss,sass}'",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "secretlint": "secretlint '**/*'",
@@ -31,10 +32,8 @@
     "node": "^24.0.0"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "2.4.0",
     "@eslint/js": "10.0.1",
     "@secretlint/secretlint-rule-preset-recommend": "13.0.2",
-    "@types/chrome": "0.1.42",
     "eslint": "10.4.1",
     "husky": "9.1.7",
     "lint-staged": "17.0.6",
@@ -46,8 +45,8 @@
     "stylelint-config-standard-scss": "17.0.0",
     "typescript": "6.0.3",
     "typescript-eslint": "8.60.0",
-    "vite": "8.0.14",
-    "vitest": "4.1.7"
+    "vitest": "4.1.7",
+    "wxt": "0.20.26"
   },
   "packageManager": "pnpm@11.5.0",
   "lint-staged": {

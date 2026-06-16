@@ -67,13 +67,13 @@ feat!: remove support for Manifest V2
 
 ### Development
 
-- `pnpm dev` - Start development server
-- `pnpm build` - Build extension (TypeScript compile + Vite build)
-- `pnpm preview` - Preview built extension
+- `pnpm dev` - Start WXT development server with HMR
+- `pnpm build` - Build extension for production
+- `pnpm zip` - Build and package extension as ZIP
 
 ### Testing and Quality
 
-- `pnpm test` - Run Jest tests
+- `pnpm test` - Run Vitest tests
 - `pnpm lint` - ESLint with max 0 warnings
 - `pnpm lint:fix` - Auto-fix ESLint issues
 - `pnpm style-lint` - StyleLint for SCSS files
@@ -83,50 +83,59 @@ feat!: remove support for Manifest V2
 
 ## Architecture
 
-HamaColor is a Chrome extension that adds colored borders to web pages based on URL pattern matching.
+HamaColor is a Chrome extension that adds colored borders to web pages based on URL pattern matching. Built with [WXT](https://wxt.dev/) using the `src/` directory pattern.
 
 ### Core Components
 
-**Background Service Worker** (`src/background.ts`)
+**Background Service Worker** (`src/entrypoints/background.ts`)
 
 - Listens to tab activation/updates
-- Initializes storage and triggers page updates
-- Entry point for extension lifecycle
+- Delegates to `utils/tab.ts` for tab update logic
 
-**Rule System** (`src/rule.ts`)
+**Content Script** (`src/entrypoints/content.ts`)
+
+- Declarative content script injected into all pages
+- Listens for messages from background/popup
+- Creates/removes colored border overlays (fixed positioning, z-index 2147483647, 16px wide, 0.2 opacity)
+
+**Popup Interface** (`src/entrypoints/popup/`)
+
+- Toggle switch for enabling/disabling borders
+- Text input for rule configuration
+- Syncs with browser storage API
+
+**Tab Management** (`src/utils/tab.ts`)
+
+- Orchestrates storage retrieval, rule matching, and messaging to content script
+- Shared by both background and popup entrypoints
+
+**Rule System** (`src/utils/rule.ts`)
 
 - Parses rule strings in format: `pattern,color` (one per line)
 - Escapes special regex characters in patterns
 - Matches URL strings against patterns using `.search()`
 
-**Tab Management** (`src/tab.ts`)
+**Storage** (`src/utils/storage.ts`)
 
-- Coordinates between rules, DOM manipulation, and active tabs
-- Executes content scripts on current tab
-- Handles rule application logic
-
-**DOM Manipulation** (`src/dom.ts`)
-
-- Creates/removes colored border overlays
-- Uses fixed positioning with high z-index (2147483647)
-- Borders are 16px wide with 0.2 opacity
-
-**Popup Interface** (`src/popup.ts`)
-
-- Toggle switch for enabling/disabling borders
-- Text input for rule configuration
-- Real-time sync with Chrome storage API
+- Type-safe wrapper around `browser.storage.sync`
 
 ### Data Flow
 
-1. User configures rules in popup → Chrome storage
+1. User configures rules in popup → browser storage
 2. Background script detects tab changes → reads storage
 3. Rule engine matches current URL → determines effect
-4. Tab manager injects content script → applies/removes borders
+4. Background/popup sends message to content script → applies/removes borders
 
 ### Build System
 
-- Vite with @crxjs/vite-plugin for Chrome extension development
+- WXT with Vite for Chrome extension development
 - TypeScript compilation with strict checking
 - SCSS processing for popup styles
-- Manifest V3 configuration in `vite.config.ts`
+- Manifest V3 configuration in `wxt.config.ts`
+
+### Design Decisions
+
+**Extension API wrappers and layering**: Currently, `utils/tab.ts` combines extension API calls (tab query, message sending) with orchestration logic (storage retrieval, rule matching). This is intentional — at the current project scale, separating a thin API adapter layer from an orchestration layer would be over-engineering. If the project grows to need features like bulk tab updates or additional messaging patterns, consider splitting into:
+
+- Thin API adapters (`utils/tab.ts`, `utils/storage.ts`) that only wrap `browser.*` calls
+- An orchestration layer (e.g. `services/`) that composes adapters with domain logic
