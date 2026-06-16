@@ -1,44 +1,29 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { get, set } from '../src/storage'
+import { describe, it, expect, beforeEach } from 'vitest'
+import { fakeBrowser } from 'wxt/testing'
+import { getStorageData, setStorageData } from '../src/utils/storage'
 
 describe('storage', () => {
-  let setMock: ReturnType<typeof vi.fn>
-  let getMock: ReturnType<typeof vi.fn>
-
   beforeEach(() => {
-    setMock = vi.fn()
-    getMock = vi.fn()
-
-    globalThis.chrome = {
-      storage: {
-        sync: {
-          set: setMock,
-          get: getMock,
-        },
-      },
-    } as unknown as typeof chrome
+    fakeBrowser.reset()
   })
 
-  describe('get', () => {
+  describe('getStorageData', () => {
     it('should return stored values when they exist', async () => {
-      getMock.mockResolvedValue({
+      await fakeBrowser.storage.sync.set({
         canViewFrame: true,
         ruleString: 'example.com,red',
       })
 
-      const result = await get(['canViewFrame', 'ruleString'])
+      const result = await getStorageData(['canViewFrame', 'ruleString'])
 
       expect(result).toEqual({
         canViewFrame: true,
         ruleString: 'example.com,red',
       })
-      expect(getMock).toHaveBeenCalledWith(['canViewFrame', 'ruleString'])
     })
 
     it('should return all default values when storage is empty', async () => {
-      getMock.mockResolvedValue({})
-
-      const result = await get(['canViewFrame', 'ruleString'])
+      const result = await getStorageData(['canViewFrame', 'ruleString'])
 
       expect(result).toEqual({
         canViewFrame: true,
@@ -47,11 +32,11 @@ describe('storage', () => {
     })
 
     it('should handle single canViewFrame key request', async () => {
-      getMock.mockResolvedValue({
+      await fakeBrowser.storage.sync.set({
         canViewFrame: false,
       })
 
-      const result = await get(['canViewFrame'])
+      const result = await getStorageData(['canViewFrame'])
 
       expect(result).toEqual({
         canViewFrame: false,
@@ -59,11 +44,11 @@ describe('storage', () => {
     })
 
     it('should handle single ruleString key request', async () => {
-      getMock.mockResolvedValue({
+      await fakeBrowser.storage.sync.set({
         ruleString: 'example.com,blue',
       })
 
-      const result = await get(['ruleString'])
+      const result = await getStorageData(['ruleString'])
 
       expect(result).toEqual({
         ruleString: 'example.com,blue',
@@ -71,11 +56,18 @@ describe('storage', () => {
     })
   })
 
-  describe('set', () => {
+  describe('setStorageData', () => {
     it('should set storage values', async () => {
-      await set({ canViewFrame: false, ruleString: 'example.com,green' })
+      await setStorageData({
+        canViewFrame: false,
+        ruleString: 'example.com,green',
+      })
 
-      expect(setMock).toHaveBeenCalledWith({
+      const stored = await fakeBrowser.storage.sync.get([
+        'canViewFrame',
+        'ruleString',
+      ])
+      expect(stored).toEqual({
         canViewFrame: false,
         ruleString: 'example.com,green',
       })

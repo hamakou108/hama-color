@@ -6,4 +6,5 @@
 .eslintcache
 
 # build
-dist/
+.output/
+.wxt/
