@@ -24,7 +24,7 @@ HamaColor is a browser extension that changes the color of the screen edges base
 2. Open Chrome and navigate to `chrome://extensions/`.
 3. Enable "Developer mode" using the toggle switch in the top right corner.
 4. Click the "Load unpacked" button.
-5. Select the `dist` directory within the cloned repository. (Note: you might need to run `pnpm build` first to generate the `dist` directory).
+5. Select the `.output/chrome-mv3` directory within the cloned repository. (Note: you might need to run `pnpm build` first to generate the `.output` directory).
 
 ## Usage
 
