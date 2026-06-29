@@ -10,7 +10,7 @@ const defaults: StorageData = {
   ruleString: '',
 }
 
-export const get = async <K extends StorageKey[]>(
+export const getStorageData = async <K extends StorageKey[]>(
   keys: K,
 ): Promise<Pick<StorageData, K[number]>> => {
   const result = await chrome.storage.sync.get(keys)
@@ -20,6 +20,8 @@ export const get = async <K extends StorageKey[]>(
   ) as Pick<StorageData, K[number]>
 }
 
-export const set = async (values: Partial<StorageData>): Promise<void> => {
+export const setStorageData = async (
+  values: Partial<StorageData>,
+): Promise<void> => {
   await chrome.storage.sync.set(values)
 }

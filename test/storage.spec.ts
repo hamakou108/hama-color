@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { get, set } from '../src/storage'
+import { getStorageData, setStorageData } from '../src/utils/storage'
 
 describe('storage', () => {
   let setMock: ReturnType<typeof vi.fn>
@@ -19,14 +19,14 @@ describe('storage', () => {
     } as unknown as typeof chrome
   })
 
-  describe('get', () => {
+  describe('getStorageData', () => {
     it('should return stored values when they exist', async () => {
       getMock.mockResolvedValue({
         canViewFrame: true,
         ruleString: 'example.com,red',
       })
 
-      const result = await get(['canViewFrame', 'ruleString'])
+      const result = await getStorageData(['canViewFrame', 'ruleString'])
 
       expect(result).toEqual({
         canViewFrame: true,
@@ -38,7 +38,7 @@ describe('storage', () => {
     it('should return all default values when storage is empty', async () => {
       getMock.mockResolvedValue({})
 
-      const result = await get(['canViewFrame', 'ruleString'])
+      const result = await getStorageData(['canViewFrame', 'ruleString'])
 
       expect(result).toEqual({
         canViewFrame: true,
@@ -51,7 +51,7 @@ describe('storage', () => {
         canViewFrame: false,
       })
 
-      const result = await get(['canViewFrame'])
+      const result = await getStorageData(['canViewFrame'])
 
       expect(result).toEqual({
         canViewFrame: false,
@@ -63,7 +63,7 @@ describe('storage', () => {
         ruleString: 'example.com,blue',
       })
 
-      const result = await get(['ruleString'])
+      const result = await getStorageData(['ruleString'])
 
       expect(result).toEqual({
         ruleString: 'example.com,blue',
@@ -71,9 +71,12 @@ describe('storage', () => {
     })
   })
 
-  describe('set', () => {
+  describe('setStorageData', () => {
     it('should set storage values', async () => {
-      await set({ canViewFrame: false, ruleString: 'example.com,green' })
+      await setStorageData({
+        canViewFrame: false,
+        ruleString: 'example.com,green',
+      })
 
       expect(setMock).toHaveBeenCalledWith({
         canViewFrame: false,

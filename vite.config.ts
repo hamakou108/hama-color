@@ -6,11 +6,17 @@ const manifest = defineManifest({
   name: 'HamaColor',
   description: 'Change screen edge color by URL',
   version: '0.2.2',
-  permissions: ['storage', 'activeTab', 'scripting'],
+  permissions: ['storage', 'activeTab'],
   host_permissions: ['*://*/*'],
   background: {
     service_worker: 'src/background.ts',
   },
+  content_scripts: [
+    {
+      matches: ['*://*/*'],
+      js: ['src/content.ts'],
+    },
+  ],
   action: {
     default_popup: 'index.html',
     default_icon: {
