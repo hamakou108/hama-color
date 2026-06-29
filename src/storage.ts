@@ -10,18 +10,16 @@ const defaults: StorageData = {
   ruleString: '',
 }
 
-export const getStorageData = async <K extends StorageKey[]>(
+export const get = async <K extends StorageKey[]>(
   keys: K,
 ): Promise<Pick<StorageData, K[number]>> => {
-  const result = await browser.storage.sync.get(keys)
+  const result = await chrome.storage.sync.get(keys)
 
   return Object.fromEntries(
     keys.map((key) => [key, result[key] ?? defaults[key]]),
   ) as Pick<StorageData, K[number]>
 }
 
-export const setStorageData = async (
-  values: Partial<StorageData>,
-): Promise<void> => {
-  await browser.storage.sync.set(values)
+export const set = async (values: Partial<StorageData>): Promise<void> => {
+  await chrome.storage.sync.set(values)
 }

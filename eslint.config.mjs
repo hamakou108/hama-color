@@ -6,6 +6,6 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
 
   {
-    ignores: ['.pnp*', '.output/*', '.wxt/*'],
+    ignores: ['.pnp*', 'dist/*'],
   },
 )
