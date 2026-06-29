@@ -1,6 +1,6 @@
 import './style.scss'
-import { getStorageData, setStorageData } from '@/utils/storage'
-import { updateTab } from '@/utils/tab'
+import { useTab } from './tab'
+import * as storage from './storage'
 
 const toggleFrameElement = document.getElementById(
   'toggle-frame',
@@ -8,7 +8,7 @@ const toggleFrameElement = document.getElementById(
 const urlsElement = document.getElementById('urls') as HTMLInputElement
 
 ;(async () => {
-  const { canViewFrame, ruleString } = await getStorageData([
+  const { canViewFrame, ruleString } = await storage.get([
     'canViewFrame',
     'ruleString',
   ])
@@ -16,16 +16,22 @@ const urlsElement = document.getElementById('urls') as HTMLInputElement
   urlsElement.value = ruleString
 })()
 
+const updateTab = async () => {
+  const { canViewFrame, ruleString } = await storage.get([
+    'canViewFrame',
+    'ruleString',
+  ])
+  await useTab().update(canViewFrame, ruleString)
+}
+
 toggleFrameElement.addEventListener('input', async (e) => {
   const canViewFrame = (e.target as HTMLInputElement).checked
-  await setStorageData({ canViewFrame })
-  const { ruleString } = await getStorageData(['ruleString'])
-  await updateTab(canViewFrame, ruleString)
+  await storage.set({ canViewFrame })
+  await updateTab()
 })
 
 urlsElement.addEventListener('input', async (e) => {
   const ruleString = (e.target as HTMLInputElement).value
-  await setStorageData({ ruleString })
-  const { canViewFrame } = await getStorageData(['canViewFrame'])
-  await updateTab(canViewFrame, ruleString)
+  await storage.set({ ruleString })
+  await updateTab()
 })
