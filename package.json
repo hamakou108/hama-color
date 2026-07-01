@@ -31,25 +31,25 @@
     "node": "^24.0.0"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "2.4.0",
+    "@crxjs/vite-plugin": "2.7.0",
     "@eslint/js": "10.0.1",
     "@secretlint/secretlint-rule-preset-recommend": "13.0.2",
-    "@types/chrome": "0.1.42",
-    "eslint": "10.4.1",
+    "@types/chrome": "0.2.0",
+    "eslint": "10.6.0",
     "husky": "9.1.7",
-    "lint-staged": "17.0.6",
-    "postcss": "8.5.15",
-    "prettier": "3.8.3",
-    "sass": "1.100.0",
+    "lint-staged": "17.0.8",
+    "postcss": "8.5.16",
+    "prettier": "3.9.1",
+    "sass": "1.101.0",
     "secretlint": "13.0.2",
-    "stylelint": "17.12.0",
+    "stylelint": "17.14.0",
     "stylelint-config-standard-scss": "17.0.0",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.60.0",
+    "typescript-eslint": "8.62.0",
     "vite": "8.0.14",
-    "vitest": "4.1.7"
+    "vitest": "4.1.9"
   },
-  "packageManager": "pnpm@11.5.0",
+  "packageManager": "pnpm@11.9.0",
   "lint-staged": {
     "*": [
       "secretlint"
