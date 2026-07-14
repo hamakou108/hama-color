@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/hamakou108/hama-color/compare/v0.2.2...v0.2.3) (2026-07-14)
+
+
+### Features
+
+* replace scripting permission with message-based content script ([#223](https://github.com/hamakou108/hama-color/issues/223)) ([2a2a85e](https://github.com/hamakou108/hama-color/commit/2a2a85e730d92003ede1b63143fce4d4176de856))
+
 ## [0.2.2](https://github.com/hamakou108/hama-color/compare/v0.2.1...v0.2.2) (2025-12-06)
 
 
