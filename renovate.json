@@ -1,4 +1,40 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:best-practices", "group:allNonMajor", "schedule:monthly"]
+  "extends": ["config:best-practices", "schedule:monthly"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "description": "Automerge group: devDependencies (any type) and production patch updates. Not shipped to production or covered by the type-checked build, so CI passing is enough to merge unattended",
+      "matchDepTypes": ["devDependencies"],
+      "groupName": "automergeable dependencies",
+      "automerge": true
+    },
+    {
+      "description": "Production patch updates join the automerge group; patch releases are bug fixes only and the build acts as a smoke test",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "automergeable dependencies",
+      "automerge": true
+    },
+    {
+      "description": "Production minor updates are grouped separately for a single monthly manual review; not automerged until smoke tests cover rendering/runtime behavior",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "runtime dependencies (minor)",
+      "automerge": false
+    },
+    {
+      "description": "GitHub Actions updates stay in their own PR (no group) and automerge; a breakage surfaces immediately as a red CI run",
+      "matchManagers": ["github-actions"],
+      "automerge": true
+    },
+    {
+      "description": "Digest and pin updates automerge in their own PRs; pins are always split out by Renovate",
+      "matchUpdateTypes": ["digest", "pin"],
+      "automerge": true
+    }
+  ]
 }
