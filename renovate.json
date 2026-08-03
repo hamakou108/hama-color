@@ -28,6 +28,12 @@
       "automerge": false
     },
     {
+      "description": "pnpm itself runs the CI install/lint/test/build path, so a green run is direct evidence that the version works",
+      "matchDepTypes": ["packageManager"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
       "description": "GitHub Actions updates stay in their own PR (no group) and automerge; a breakage surfaces immediately as a red CI run",
       "matchManagers": ["github-actions"],
       "automerge": true
