@@ -17,6 +17,7 @@
       "description": "Production patch updates join the automerge group; patch releases are bug fixes only and the build acts as a smoke test",
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["patch"],
+      "matchCurrentVersion": "!/^0/",
       "groupName": "automergeable dependencies",
       "automerge": true
     },
@@ -24,6 +25,7 @@
       "description": "Production minor updates are grouped separately for a single monthly manual review; not automerged until smoke tests cover rendering/runtime behavior",
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["minor"],
+      "matchCurrentVersion": "!/^0/",
       "groupName": "runtime dependencies (minor)",
       "automerge": false
     },
