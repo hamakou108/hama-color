@@ -6,15 +6,26 @@
     "enabled": true,
     "automerge": true
   },
+  // Pre-1.0.0 packages are deliberately absent from every rule below.
+  // Renovate derives the update type from whichever version segment
+  // changed, so a 0.2.x to 0.3.x bump counts as minor even though SemVer
+  // lets any 0.x release break compatibility. Matching on the update type
+  // therefore says nothing about whether a 0.x update is safe. Excluding
+  // them via matchCurrentVersion leaves them matched by no rule, and the
+  // Renovate defaults take over: one PR per package, reviewed by hand.
   "packageRules": [
     {
-      "description": "Automerge group: devDependencies (any type) and production patch updates. Not shipped to production or covered by the type-checked build, so CI passing is enough to merge unattended",
+      // devDependencies of any update type, automerged.
+      // They never reach production, and the type-checked build exercises
+      // them, so a green CI run is enough to merge unattended.
       "matchDepTypes": ["devDependencies"],
       "groupName": "automergeable dependencies",
       "automerge": true
     },
     {
-      "description": "Production patch updates join the automerge group; patch releases are bug fixes only and the build acts as a smoke test",
+      // Production patch updates, automerged alongside the group above.
+      // From 1.0.0 onward a patch release carries bug fixes only, and the
+      // build acts as a smoke test.
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["patch"],
       "matchCurrentVersion": "!/^0/",
@@ -22,7 +33,9 @@
       "automerge": true
     },
     {
-      "description": "Production minor updates are grouped separately for a single monthly manual review; not automerged until smoke tests cover rendering/runtime behavior",
+      // Production minor updates, held for one monthly manual review.
+      // A minor release may change runtime behavior that CI does not
+      // assert, so these stay manual until smoke tests cover it.
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["minor"],
       "matchCurrentVersion": "!/^0/",
@@ -30,18 +43,24 @@
       "automerge": false
     },
     {
-      "description": "pnpm itself runs the CI install/lint/test/build path, so a green run is direct evidence that the version works",
+      // pnpm minor and patch updates, automerged in their own PR.
+      // pnpm itself runs the CI install/lint/test/build path, so a green
+      // run is direct evidence that the version works.
       "matchDepTypes": ["packageManager"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     },
     {
-      "description": "GitHub Actions updates stay in their own PR (no group) and automerge; a breakage surfaces immediately as a red CI run",
+      // GitHub Actions updates, automerged in their own PR.
+      // A breakage surfaces immediately as a red CI run.
       "matchManagers": ["github-actions"],
       "automerge": true
     },
     {
-      "description": "Digest and pin updates automerge in their own PRs; pins are always split out by Renovate",
+      // Digest and pin updates, automerged in their own PRs.
+      // A pin only records the version already in use, and a digest
+      // re-resolves the same version tag, so neither is a version change
+      // a human could meaningfully review.
       "matchUpdateTypes": ["digest", "pin"],
       "automerge": true
     }
