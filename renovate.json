@@ -1,6 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:best-practices"],
+  // Spelled out rather than extended from schedule:monthly, which only
+  // opens a 0:00-4:00 window on the first of the month. Combined with the
+  // prHourlyLimit of 2 that config:best-practices sets, that caps PR
+  // creation at 8 per month and leaves updates stuck on the Dependency
+  // Dashboard. The cadence below is the same monthly one, widened to the
+  // full day.
   "schedule": ["* * 1 * *"],
   "lockFileMaintenance": {
     "enabled": true,
