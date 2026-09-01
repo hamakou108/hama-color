@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.3](https://github.com/hamakou108/hama-color/compare/v0.2.2...v0.2.3) (2026-09-01)
+
+
+### Features
+
+* replace scripting permission with message-based content script ([#223](https://github.com/hamakou108/hama-color/issues/223)) ([2a2a85e](https://github.com/hamakou108/hama-color/commit/2a2a85e730d92003ede1b63143fce4d4176de856))
+
+
+### Bug Fixes
+
+* **renovate:** exclude pre-1.0.0 packages from automerge ([#243](https://github.com/hamakou108/hama-color/issues/243)) ([67609e4](https://github.com/hamakou108/hama-color/commit/67609e470e63c5da4ed20303dd5ae897d37a229e))
+
 ## [0.2.2](https://github.com/hamakou108/hama-color/compare/v0.2.1...v0.2.2) (2025-12-06)
 
 
