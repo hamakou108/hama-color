@@ -1,6 +1,6 @@
 {
   "name": "hama-color",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Change screen edge color by URL",
   "type": "module",
   "scripts": {
