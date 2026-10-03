@@ -31,7 +31,7 @@
     "node": "^24.0.0"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "2.7.1",
+    "@crxjs/vite-plugin": "3.0.0",
     "@eslint/js": "10.0.1",
     "@secretlint/secretlint-rule-preset-recommend": "13.0.6",
     "@types/chrome": "0.3.3",
@@ -44,10 +44,10 @@
     "secretlint": "13.0.6",
     "stylelint": "17.15.0",
     "stylelint-config-standard-scss": "17.0.0",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "typescript-eslint": "8.71.0",
     "vite": "8.3.1",
-    "vitest": "4.1.11"
+    "vitest": "5.0.3"
   },
   "packageManager": "pnpm@11.28.2",
   "lint-staged": {
