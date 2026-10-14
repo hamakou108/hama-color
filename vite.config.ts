@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import { crx, defineManifest } from '@crxjs/vite-plugin'
+import pkg from './package.json' with { type: 'json' }
 
 const manifest = defineManifest({
   manifest_version: 3,
   name: 'HamaColor',
   description: 'Change screen edge color by URL',
-  version: '0.2.2',
+  version: pkg.version,
   permissions: ['storage', 'activeTab'],
   host_permissions: ['*://*/*'],
   background: {

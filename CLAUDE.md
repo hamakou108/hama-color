@@ -132,6 +132,7 @@ HamaColor is a Chrome extension that adds colored borders to web pages based on 
 - TypeScript compilation with strict checking
 - SCSS processing for popup styles
 - Manifest V3 configuration in `vite.config.ts`
+- The manifest version is read from `package.json`, which Release Please bumps
 
 ### Design Decisions
 
