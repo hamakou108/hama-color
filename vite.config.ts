@@ -7,7 +7,9 @@ const manifest = defineManifest({
   name: 'HamaColor',
   description: 'Change screen edge color by URL',
   version: pkg.version,
-  permissions: ['storage', 'activeTab'],
+  permissions: ['storage'],
+  // Lets the background and popup read the active tab's URL through
+  // chrome.tabs.query. The content script matches below do not grant this.
   host_permissions: ['*://*/*'],
   background: {
     service_worker: 'src/background.ts',
