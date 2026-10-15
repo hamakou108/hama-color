@@ -31,8 +31,8 @@ This project uses [Release Please](https://github.com/googleapis/release-please)
 | ---------- | ------------------------ | --------------------------- |
 | `feat`     | Features                 | minor (patch while < 1.0.0) |
 | `fix`      | Bug Fixes                | patch                       |
-| `docs`     | Documentation            | — (no release)              |
-| `chore`    | Miscellaneous Chores     | — (no release)              |
+| `docs`     | —                        | — (no release)              |
+| `chore`    | —                        | — (no release)              |
 | `build`    | —                        | — (no release)              |
 | `ci`       | —                        | — (no release)              |
 | `refactor` | —                        | — (no release)              |
