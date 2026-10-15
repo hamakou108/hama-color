@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/hamakou108/hama-color/compare/v0.2.3...v0.2.4) (2026-10-15)
+
+
+### Bug Fixes
+
+* remove the unused activeTab permission ([#261](https://github.com/hamakou108/hama-color/issues/261)) ([bc9da42](https://github.com/hamakou108/hama-color/commit/bc9da420609f093841f865ad58822ff0b259b7e8))
+
 ## [0.2.3](https://github.com/hamakou108/hama-color/compare/v0.2.2...v0.2.3) (2026-10-14)
 
 
