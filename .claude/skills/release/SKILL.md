@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Release HamaColor
 
-Confirm with the user right before each action that changes GitHub or the Chrome Web Store: merging, editing a PR body, re-running a workflow, and submitting for review.
+Confirm with the user right before each action that changes GitHub: merging, editing a PR body, and re-running a workflow.
 
 ```
 - [ ] Review the Release PR changelog and merge the PR
