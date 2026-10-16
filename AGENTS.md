@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents when working with code in this repository.
 
 ## Language
 
@@ -83,7 +83,7 @@ feat!: remove support for Manifest V2
 
 ### Release
 
-- `/release` - Release to the Chrome Web Store (project skill in `.claude/skills/release/`)
+- Release to the Chrome Web Store by following the release skill in `.claude/skills/release/SKILL.md` (invoked as `/release` in Claude Code)
 
 ## Architecture
 
