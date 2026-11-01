@@ -49,7 +49,7 @@
     "vite": "8.3.5",
     "vitest": "4.1.12"
   },
-  "packageManager": "pnpm@12.13.0",
+  "packageManager": "pnpm@12.16.1",
   "lint-staged": {
     "*": [
       "secretlint"
